@@ -4,4 +4,9 @@
 <h3><%= @book.description%></h3>
 <p><%= @book.release%></p>
 
+
+<p><%= link_to "Edit", edit_book_path(@book) %></p>
+
+
+
 <%= link_to 'Back', books_path%>
