@@ -21,6 +21,9 @@
     <strong>Star:</strong>
     <%= review.star %>
   </p>
+
+  <p><%= link_to "Edit", edit_book_review_path(@book,review) %></p>
+
 <% end %>
 
 <h2>Add a review:</h2>
