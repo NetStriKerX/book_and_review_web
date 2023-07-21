@@ -10,4 +10,34 @@
 
 
 
+<h2>Reviews</h2>
+<% @book.reviews.each do |review| %>
+  <p>
+    <strong>Comment:</strong>
+    <%= review.comment %>
+  </p>
+
+  <p>
+    <strong>Star:</strong>
+    <%= review.star %>
+  </p>
+<% end %>
+
+<h2>Add a review:</h2>
+<%= form_with model: [ @book, @book.reviews.build ] do |form| %>
+  <p>
+    <%= form.label :comment %><br>
+    <%= form.text_field :comment %>
+  </p>
+  <p>
+    <%= form.label :star %><br>
+    <%= form.number_field :star, step: :any %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+
+
 <%= link_to 'Back', books_path%>
