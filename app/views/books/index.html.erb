@@ -1,9 +1,11 @@
 <h1>Books#index</h1>
 
+<%= link_to 'New Book', new_book_path%>
+
 <ul>
   <% @books.each do |book|%>
-  <li>
-    <%= link_to book.name, book%>
-  </li>
+    <li>
+      <%= link_to book.name, book%>
+    </li>
   <% end%>
 </ul>
