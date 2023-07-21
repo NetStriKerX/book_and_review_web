@@ -23,6 +23,7 @@
   </p>
 
   <p><%= link_to "Edit", edit_book_review_path(@book,review) %></p>
+  <p><%= button_to "Destroy", book_review_path(@book,review), :method => :delete %></p>
 
 <% end %>
 
