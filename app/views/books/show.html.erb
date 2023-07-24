@@ -3,12 +3,8 @@
 <h2><%= @book.name%></h2>
 <h3><%= @book.description%></h3>
 <p><%= @book.release%></p>
-
-
 <p><%= link_to "Edit", edit_book_path(@book) %></p>
 <p><%= button_to "Destroy", @book, :method => :delete %></p>
-
-
 
 <h2>Reviews</h2>
 <% @book.reviews.each do |review| %>
@@ -16,18 +12,16 @@
     <strong>Comment:</strong>
     <%= review.comment %>
   </p>
-
   <p>
     <strong>Star:</strong>
     <%= review.star %>
   </p>
-
   <p><%= link_to "Edit", edit_book_review_path(@book,review) %></p>
   <p><%= button_to "Destroy", book_review_path(@book,review), :method => :delete %></p>
-
 <% end %>
 
 <h2>Add a review:</h2>
+<%= @error%>
 <%= form_with model: [ @book, @book.reviews.build ] do |form| %>
   <p>
     <%= form.label :comment %><br>
@@ -41,7 +35,5 @@
     <%= form.submit %>
   </p>
 <% end %>
-
-
 
 <%= link_to 'Back', books_path%>

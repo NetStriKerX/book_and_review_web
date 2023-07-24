@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
+
   def index
     @books = Book.all
   end
@@ -30,8 +31,11 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book.destroy
-    redirect_to books_path
+    if @book.destroy
+      redirect_to books_path
+    else
+      redirect_to books_path(error: @book.errors.full_messages)
+    end
   end
 
   private

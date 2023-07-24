@@ -1,9 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[edit update destroy]
+
   def create
     @book = Book.find(params[:book_id])
-    @review = @book.reviews.create(review_params)
-    redirect_to book_path(@book)
+    if @book.reviews.create(review_params)
+      redirect_to book_path(@book)
+    else
+      redirect_to book_review_path(error: @book.errors_full_messages)
+    end
   end
 
   def edit
@@ -11,13 +15,19 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update(review_params)
-    redirect_to book_path(@review.book)
+    if @review.update(review_params)
+      redirect_to book_path(@review.book)
+    else
+      redirect_to edit_book_review_path(error: @review.errors.full_messages)
+    end
   end
 
   def destroy
-    @review.destroy
-    redirect_to @review.book
+    if @review.destroy
+      redirect_to @review.book
+    else
+      redirect_to book_review_path(error: @review.errors.full_messages)
+    end
   end
 
   private

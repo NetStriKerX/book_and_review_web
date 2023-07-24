@@ -1,16 +1,14 @@
 <%= error%>
 
-<%= form_with model: [@book, @review], local: true do |form| %>
+<%= form_with model: [book, review], local: true do |form| %>
   <div>
     <%= form.label :comment %><br>
     <%= form.text_field :comment %>
   </div>
-
   <div>
     <%= form.label :star %><br>
     <%= form.number_field :star, step: :any %>
   </div>
-
   <div>
     <br>
     <%= form.submit %>
