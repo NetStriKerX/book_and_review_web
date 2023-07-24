@@ -21,7 +21,6 @@
 <% end %>
 
 <h2>Add a review:</h2>
-<%= @error%>
 <%= form_with model: [ @book, @book.reviews.build ] do |form| %>
   <p>
     <%= form.label :comment %><br>
