@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[edit update destroy]
+  before_action :authenticate_user!
 
   def create
     @book = Book.find(params[:book_id])
