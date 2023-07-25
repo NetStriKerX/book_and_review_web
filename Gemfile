@@ -12,6 +12,10 @@ gem 'pundit', '~> 2.3', '>= 2.3.1'
 
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
+gem 'annotate', '~> 3.2.0'
+
+gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

@@ -14,6 +14,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.user_id = current_user.id
     if @book.save
       redirect_to @book
     else
@@ -24,6 +25,7 @@ class BooksController < ApplicationController
   def edit;  end
 
   def update
+    authorize @book, policy_class: BookPolicy
     if @book.update(book_params)
       redirect_to @book
     else
@@ -32,6 +34,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    authorize @book, policy_class: BookPolicy
     if @book.destroy
       redirect_to books_path
     else
