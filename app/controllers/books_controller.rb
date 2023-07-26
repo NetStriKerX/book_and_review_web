@@ -4,11 +4,11 @@ class BooksController < ApplicationController
   before_action :authorization, only: %i[update destroy]
 
   def index
-    @books = Book.page(params[:page]).per(10)
+    @books = Book.page(params[:page])
   end
 
   def show
-    @reviews = @book.reviews.page(params[:page]).per(10)
+    @reviews = @book.reviews.page(params[:page])
   end
 
   def new
