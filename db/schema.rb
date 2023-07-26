@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_094730) do
     t.datetime "release"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 1, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_094730) do
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 1, null: false
+    t.bigint "user_id", null: false
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

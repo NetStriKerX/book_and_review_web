@@ -50,4 +50,10 @@ class ApplicationPolicy
 
     attr_reader :user, :scope
   end
+
+  protected
+
+  def owner?
+    user == record.user
+  end
 end

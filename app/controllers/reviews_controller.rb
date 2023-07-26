@@ -1,11 +1,10 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[edit update destroy]
   before_action :authenticate_user!
+  before_action :set_review, only: %i[edit update destroy]
+  before_action :authorization, only: %i[update destroy]
 
   def create
     @book = Book.find(params[:book_id])
-    review_params = params.require(:review).permit(:comment, :star, :user_id)
-    review_params[:user_id] = current_user.id
     if @book.reviews.create(review_params)
       redirect_to book_path(@book)
     else
@@ -18,7 +17,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    authorize @review, policy_class: ReviewPolicy
     if @review.update(review_params)
       redirect_to book_path(@review.book)
     else
@@ -27,7 +25,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    authorize @review, policy_class: ReviewPolicy
     if @review.destroy
       redirect_to @review.book
     else
@@ -38,10 +35,16 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:comment, :star)
+    params.require(:review).permit(:comment, :star).tap do |review_params|
+      review_params[:user_id] = current_user.id
+    end
   end
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def authorization
+    authorize @review, policy_class: ReviewPolicy
   end
 end

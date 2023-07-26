@@ -14,8 +14,6 @@ gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 gem 'annotate', '~> 3.2.0'
 
-gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
-
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -67,6 +65,8 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -79,4 +79,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
+  gem 'factory_bot_rails', '~> 6.2'
 end
