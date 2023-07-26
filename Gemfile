@@ -6,6 +6,14 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.6"
 
+gem 'devise', '~> 4.9', '>= 4.9.2'
+
+gem 'pundit', '~> 2.3', '>= 2.3.1'
+
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
+
+gem 'annotate', '~> 3.2.0'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -57,6 +65,8 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -69,4 +79,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
+  gem 'factory_bot_rails', '~> 6.2'
 end

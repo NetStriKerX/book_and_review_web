@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_book, only: %i[show edit update destroy]
+  before_action :authorization, only: %i[update destroy]
 
   def index
     @books = Book.all
@@ -41,10 +43,16 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:name, :description, :release)
+    params.require(:book).permit(:name, :description, :release).tap do |param|
+      param[:user_id] = current_user.id
+    end
   end
 
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def authorization
+    authorize @book, policy_class: BookPolicy
   end
 end
