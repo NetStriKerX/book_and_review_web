@@ -22,6 +22,14 @@
 
   <%= paginate @reviews %>
 
+  <p>
+    Go To Page
+    <%= form_tag book_path(@book), method: :get do %>
+      <%= text_field_tag :page, params[:page], class: "form-control" %>
+      <%= submit_tag "Go", class: "btn btn-primary" %>
+    <% end %>
+  </p>
+
 <h2>Add a review:</h2>
 <%= form_with model: [ @book, @book.reviews.build ] do |form| %>
   <p>

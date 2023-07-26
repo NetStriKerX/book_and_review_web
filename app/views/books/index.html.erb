@@ -10,7 +10,14 @@
       <%= link_to book.name, book%>
     </li>
   <% end%>
+</ul>
 
   <%= paginate @books %>
 
-</ul>
+  <p>
+  Go To Page
+    <%= form_tag books_path, method: :get do %>
+      <%= text_field_tag :page, params[:page] %>
+      <%= submit_tag "Go" %>
+    <% end %>
+  </p>
