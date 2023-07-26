@@ -19,6 +19,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Book < ApplicationRecord
+  paginates_per 10
   belongs_to :user
   has_many :reviews, dependent: :destroy
   validates :name, presence: true
