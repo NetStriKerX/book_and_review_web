@@ -7,7 +7,7 @@
 <p><%= button_to "Destroy", @book, :method => :delete %></p>
 
 <h2>Reviews</h2>
-<% @book.reviews.each do |review| %>
+<% @reviews.each do |review| %>
   <p>
     <strong>Comment:</strong>
     <%= review.comment %>
@@ -19,6 +19,8 @@
   <p><%= link_to "Edit", edit_book_review_path(@book,review) %></p>
   <p><%= button_to "Destroy", book_review_path(@book,review), :method => :delete %></p>
 <% end %>
+
+  <%= paginate @reviews %>
 
 <h2>Add a review:</h2>
 <%= form_with model: [ @book, @book.reviews.build ] do |form| %>
