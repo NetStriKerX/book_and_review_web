@@ -11,3 +11,13 @@
     </li>
   <% end%>
 </ul>
+
+  <%= paginate @books %>
+
+  <p>
+  Go To Page
+    <%= form_tag books_path, method: :get do %>
+      <%= text_field_tag :page, params[:page] %>
+      <%= submit_tag "Go" %>
+    <% end %>
+  </p>
