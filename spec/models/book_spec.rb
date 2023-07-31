@@ -4,7 +4,7 @@ RSpec.describe Book, type: :model do
   describe 'valid factory' do
     subject(:factory) { build(:book) }
 
-      it { is_expected.to be_valid }
+    it { is_expected.to be_valid }
   end
 
   describe 'validations' do
