@@ -14,6 +14,8 @@ gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 gem 'annotate', '~> 3.2.0'
 
+gem 'config', '~> 4.2', '>= 4.2.1'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -36,7 +38,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem 'redis', '~> 5.0', '>= 5.0.6'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
