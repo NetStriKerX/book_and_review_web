@@ -4,11 +4,11 @@ class BooksController < ApplicationController
   before_action :authorization, only: %i[update destroy]
 
   def index
-    @books = Book.page(params[:page])
+    @books = books
   end
 
   def show
-    @reviews = @book.reviews.page(params[:page])
+    @reviews = reviews
   end
 
   def new
@@ -56,5 +56,17 @@ class BooksController < ApplicationController
 
   def authorization
     authorize @book, policy_class: BookPolicy
+  end
+
+  def books
+    Rails.cache.fetch('books', expires_in: 10.minutes) do
+      Book.all.load
+    end
+  end
+
+  def reviews
+    Rails.cache.fetch('reviews', expires_in: 10.minutes) do
+      @book.reviews.load
+    end
   end
 end
