@@ -4,8 +4,8 @@ class BooksController < ApplicationController
   before_action :authorization, only: %i[update destroy]
 
   def index
-    binding.pry
-    @books = books.page(params[:page])
+    @books = books
+    # .page(params[:page])
   end
 
   def show
@@ -60,8 +60,8 @@ class BooksController < ApplicationController
   end
 
   def books
-    Rails.cache.fetch('books', expires_in: 10.minutes) do
-      Book.all
+    Rails.cache.fetch('books', expires_in: 1.minutes) do
+      Book.all.load
     end
   end
 end
