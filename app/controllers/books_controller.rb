@@ -18,7 +18,6 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      Rails.cache.delete('books')
       redirect_to @book
     else
       redirect_to new_book_path(error: @book.errors.full_messages)
@@ -29,7 +28,6 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      Rails.cache.delete('books')
       redirect_to @book
     else
       redirect_to edit_book_path(error: @book.errors.full_messages)
@@ -38,7 +36,6 @@ class BooksController < ApplicationController
 
   def destroy
     if @book.destroy
-      Rails.cache.delete('books')
       redirect_to books_path
     else
       redirect_to books_path(error: @book.errors.full_messages)
