@@ -9,7 +9,10 @@ class BooksController < ApplicationController
   end
 
   def show
-    @reviews = @book.reviews.page(params[:page])
+    # @reviews = @book.reviews.page(params[:page])
+    @reviews = reviews.filter do |review|
+      review.book_id == @book.id
+    end
   end
 
   def new
@@ -60,8 +63,14 @@ class BooksController < ApplicationController
   end
 
   def books
-    Rails.cache.fetch('books', expires_in: 1.minutes) do
+    Rails.cache.fetch('books', expires_in: 10.minutes) do
       Book.all.load
+    end
+  end
+
+  def reviews
+    Rails.cache.fetch('reviews', expires_in: 10.minutes) do
+      Review.all.load
     end
   end
 end
