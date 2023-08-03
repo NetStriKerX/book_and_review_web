@@ -5,14 +5,10 @@ class BooksController < ApplicationController
 
   def index
     @books = books
-    # .page(params[:page])
   end
 
   def show
-    # @reviews = @book.reviews.page(params[:page])
-    @reviews = reviews.filter do |review|
-      review.book_id == @book.id
-    end
+    @reviews = reviews
   end
 
   def new
@@ -22,6 +18,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
+      Rails.cache.delete('books')
       redirect_to @book
     else
       redirect_to new_book_path(error: @book.errors.full_messages)
@@ -32,6 +29,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
+      Rails.cache.delete('books')
       redirect_to @book
     else
       redirect_to edit_book_path(error: @book.errors.full_messages)
@@ -40,6 +38,7 @@ class BooksController < ApplicationController
 
   def destroy
     if @book.destroy
+      Rails.cache.delete('books')
       redirect_to books_path
     else
       redirect_to books_path(error: @book.errors.full_messages)
@@ -70,7 +69,7 @@ class BooksController < ApplicationController
 
   def reviews
     Rails.cache.fetch('reviews', expires_in: 10.minutes) do
-      Review.all.load
+      @book.reviews.load
     end
   end
 end
